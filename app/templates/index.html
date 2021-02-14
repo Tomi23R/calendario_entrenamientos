@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}
+	Calendar
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="static/css/calendar.css">
+{% endblock %}
+
+{% block javascript %}
+<script src="static/js/calendar.js"></script>
+{% endblock %}
+
+{% block content %}
+	<table class="table table-bordered border-secundary caption-top calendar">
+		<caption>
+			<div class="row">
+				<div class="col"></div>
+				<div id="month" class="col text-center fs-2"></div>
+				<div class="col"></div>
+			</div>
+		</caption>
+		<thead>
+			<th class="col-1" scope="col">Lunes</th>
+			<th class="col-1" scope="col">Martes</th>
+			<th class="col-1" scope="col">Miercoles</th>
+			<th class="col-1" scope="col">Jueves</th>
+			<th class="col-1" scope="col">Viernes</th>
+			<th class="col-1" scope="col">Sabado</th>
+			<th class="col-1" scope="col">Domingo</th>
+		</thead>
+		<tbody id="calendar-body">
+			<!-- Fila 1 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+			<!-- Fila 2 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!-- Fila 3 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!-- Fila 4 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!-- Fila 5 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
+			<!-- Fila 6 del calendario -->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+{% endblock %}

@@ -1,19 +1,142 @@
-<div id="create_training" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<!-- Modal -->
+<div class="modal fade bd-example-modal-xl" id="createTraining" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Crear entrenamiento</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear entrenamiento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action='/create_training' method='POST'>
+                <div class="modal-body">
+                    <!-- Primera parte del modal -->
+                    <div class="modal-split">
+                        <div class="form-group row">
+                            <div class="form-group col-md-6">
+                                <label for="training_name" class="col-form-label">Nombre del entrenamiento:</label>
+                                <input type="text" class="form-control" id="training_name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="training_date" class="col-form-label">Fecha:</label>
+                                <input type="text" readonly class="form-control-plaintext" id="training_date">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sport_type">Example select</label>
+                            <select class="form-control" id="sport_type">
+                                <option value=1>Natacion</option>
+                                <option value=2 selected>Carrera</option>
+                                <option value=3>Ciclismo</option>
+                            </select>
+                        </div>                
+                    </div>
+
+                    <!-- Segunda parte del modal de crear entrenamiento -->
+                    <div class="modal-split">
+                        <!-- Seleccionar tipo de entrenamiento -->
+                        <div class="form-row">
+                            <label for="training_type" class="col-form-label">Tipo de entrenamiento:</label>
+                            <select class="form-control" id="training_type">
+                                <option value=1 selected>Rodaje por tiempo</option>
+                                <option value=2>Rodaje por distancia</option>
+                                <option value=3>Series por tiempo</option>
+                                <option value=4>Series por distancia</option>
+                                <option value=5>Otro</option>
+                            </select>
+                        </div>
+
+                        <!-- Seleccionar tipo de entrenamiento por bloques -->
+                        <fieldset id="entrenamiento_bloques" class="form-row">
+                            <legend class="col-form-label">Entrenamiento de bloques</label>
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value=0 checked>
+                                    <label class="form-check-label" for="gridRadios1">Distancia</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value=1>
+                                    <label class="form-check-label" for="gridRadios2">Tiempo</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value=2>
+                                    <label class="form-check-label" for="gridRadios3">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Entrenamiento por bloques -->
+                        <div id="bloques" class="form-row">
+                            <div class="form-group col">
+                                <label id="bloques_1" for="n_bloques" class="form-control">N bloques</label>
+                                <input type="text" class="form-control" id="n_bloques">
+                            </div>
+
+                            <div class="form-group col">
+                                <label id="bloques_2" for="n_series" class="form-control">N series</label>
+                                <input type="text" class="form-control" id="n_series">
+                            </div>
+
+                            <div class="form-group col">
+                                <label id="bloques_3" for="distancia_tiempo" class="form-control"></label>
+                                <input type="text" class="form-control" id="distancia_tiempo">
+                            </div>
+
+                            <div class="form-group col">
+                                <label id="bloques_4" for="rest_series" class="form-control">Descanso series</label>
+                                <input type="text" class="form-control" id="rest_series">
+                            </div>
+
+                            <div class="form-group col">
+                                <label id="bloques_5" for="rest_bloques" class="form-control">Descanso bloques</label>
+                                <input type="text" class="form-control" id="rest_bloques">
+                            </div>
+                        </div>
+
+                        <!-- Entrenamiento de rodaje -->
+                        <div id="rodaje" class="form-row">
+                            <div class="form-group col-md-6">
+                                <label id="rodaje1" for="target_distance_pace" class="col-form-label">Tiempo: </label>
+                                <input type="text" class="form-control" id="target_distance_pace">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="target_pace" class="col-form-label">Ritmo:</label>
+                                <input type="text" class="form-control" id="target_pace">
+                            </div>
+                        </div>
+
+                        <!-- Comentario aclaratorio del entrenamiento -->
+                        <div class="form-row">
+                            <label for="message-text" class="col-form-label">Comentario:</label>
+                            <textarea class="form-control" id="commentary"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Tercera parte del modal de crear entrenamiento en la que se muestra el entrenamiento antes de guardarlo -->
+                    <div class="modal-split">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Tipo de entrenamiento:</label>
+                            <input type="text" class="form-control" id="training_type">
+                        </div>
+                        <div class="form-group">
+                            <label for="sport_type">Example select</label>
+                            <select class="form-control" id="sport_type">
+                                <optgroup label="Test1">
+                                    <option value=1>Natacion</option>
+                                    <option value=2>Carrera</option>
+                                </optgroup>
+                                <optgroup label="Test2">
+                                    <option value=3>Ciclismo</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Comentario:</label>
+                            <textarea class="form-control" id="commentary"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"></div>
+            </form>
         </div>
     </div>
 </div>

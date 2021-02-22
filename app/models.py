@@ -82,6 +82,8 @@ class Entrenamiento(Model):
     commentary = Column(String(100))
     # Tipo de deporte
     sport = Column(Enum(Deporte))
+    # Tipo de entrenamiento
+    training_type = Column(String(50))
     # Relacion one-to-many con bloques
     bloques = relationship('Bloques')
     # Relacion many-to-one con usuario

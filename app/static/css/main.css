@@ -65,3 +65,12 @@
     padding-left: 3px;
     padding-right: 3px;
 }
+
+/* CSS del modal */
+#entrenamiento_bloques{
+    display: none;
+}
+
+#bloques{
+    display: none;
+}
